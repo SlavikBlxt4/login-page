@@ -1,5 +1,38 @@
+@import url("../fonts/AvenirNextCyr-Medium.ttf");
+body {
+  background: linear-gradient(to bottom, #14143c, #142878);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: "AvenirNextCyr-Medium";
+}
+
+.login-title h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+  padding-top: 90px;
+}
+.login-title p {
+  font-size: 20px;
+  font-weight: 400;
+  color: #333;
+}
+
 .login-box {
-  background-color: aqua;
+  width: 666px;
+  height: 500px;
+  background-color: white;
+  border-radius: 20px;
+  text-align: center;
+}
+.login-box input {
+  margin: 10px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #333;
 }
 
 /*# sourceMappingURL=App.css.map */
