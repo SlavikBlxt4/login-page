@@ -1,26 +1,22 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
+
+import LoginPage from './pages/LoginPage';
+import Main from './pages/Main';
 
 function App() {
+  const [page, setPage] = useState('/');
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Main setPage={setPage} />} />
+          <Route path="/login" element={<LoginPage setPage={setPage} />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
