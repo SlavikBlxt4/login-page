@@ -7,9 +7,7 @@ $transition-duration: 0.3s;
 $transition-timing-function: ease;
 $border-radius: 20px;
 $input-margin: 10px;
-$font-family: 'AvenirNextCyr-Medium';
 
-@import url('../fonts/AvenirNextCyr-Medium.ttf');
 
 
 @mixin box($width, $height, $background-color, $border-radius) {
@@ -48,7 +46,6 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    font-family: $font-family;
 }
 
 
