@@ -6,6 +6,12 @@ const app = express();
 app.use(cors());
 const PORT = 3000;
 
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
+
 const myPool = new Pool({
     user: "postgres",
     host: "database-1.cpmk4w6w84vv.us-east-1.rds.amazonaws.com",
@@ -31,10 +37,7 @@ app.get("/pelicula", async (req: Request, res: Response) => {
     }
 });
 
-app.post("/usuarios/", (req: Request, res: Response) => {
-    const { email, password, name } = req.body;
-    res.send('Body params por POST');
-});
+
 
 app.post("/peliculas", (req: Request, res: Response) => {
     res.send('Tu primer POST');
@@ -50,6 +53,22 @@ app.delete("/peliculas", (req: Request, res: Response) => {
     res.send('Tu primer DELETE');
     // ELIMINAR UNA PELÍCULA (DELETE PELICULA)
 });
+
+app.post('/usuarios', async (req, res) => {
+    const { email, password } = req.body;
+  
+    try {
+      // Insert the user data into the database
+      const queryString = 'INSERT INTO usuarios (email, password) VALUES($1, $2)';
+      const values = [email, password];
+  
+      await myPool.query(queryString, values);
+      res.status(200).json({ message: 'User registered successfully' });
+    } catch (error) {
+      console.error('Failed to insert user into database:', error);
+      res.status(500).json({ error: 'Failed to insert user into database' });
+    }
+  });
 
 app.get("/categoria", async (req: Request, res: Response) => {
     try {

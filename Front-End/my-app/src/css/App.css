@@ -22,7 +22,7 @@ body {
 .login-box {
   width: 666px;
   height: 500px;
-  background-color: white;
+  background-color: rgb(243, 243, 243);
   border-radius: 20px;
   text-align: center;
 }
@@ -31,6 +31,10 @@ body {
   font-size: 15px;
   font-weight: 400;
   color: #333;
+}
+.login-box .login-form {
+  display: flex;
+  flex-direction: column;
 }
 
 /*# sourceMappingURL=App.css.map */

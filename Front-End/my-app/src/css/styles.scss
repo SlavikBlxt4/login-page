@@ -1,4 +1,4 @@
-$background-color: white;
+$background-color: rgb(243, 243, 243);
 $text-color: #333;
 $background-size: cover;
 $background-repeat: no-repeat;
@@ -68,5 +68,11 @@ body {
     input{
         @include input-rules($input-margin);
         @include text(15px, 400, $text-color);
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        
     }
 }
