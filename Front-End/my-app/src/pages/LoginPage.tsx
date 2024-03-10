@@ -1,8 +1,12 @@
 import React from 'react';
 import '../css/App.css';
+import { useNavigate } from 'react-router-dom';
 
 
-//backend request scriptsç
+
+const LoginPage: React.FC<LoginPageProps> = ({ setPage }) => {
+  const navigate = useNavigate();
+  //backend request scripts
 
 // fetch para el registro de usuarios
 
@@ -54,9 +58,11 @@ const handleLoginSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       },
       body: JSON.stringify(userData),
     });
+    const data = await response.json();
 
     if (response.ok) {
       console.log('User logged in successfully');
+      navigate('/');
     } else {
       console.log('Login failed');
     }
@@ -66,7 +72,8 @@ const handleLoginSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 }
 
 
-const LoginPage: React.FC<LoginPageProps> = ({ setPage }) => {
+
+
     return (
       <div>
         <div className='login-box'>
@@ -97,3 +104,4 @@ type LoginPageProps = {
 }
 
 export default LoginPage;
+

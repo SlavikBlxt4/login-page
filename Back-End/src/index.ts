@@ -72,8 +72,8 @@ app.post('/usuarios/login', async (req, res) => {
         const usuario = result.rows[0];
 
         // Comparar la contraseña ingresada con la contraseña almacenada en la base de datos
-        const match = await bcrypt.compare(password, usuario.password);
-        if (!match) {
+        
+        if (password !== usuario.password) {
             return res.status(401).json({ mensaje: 'Email o contraseña incorrectos' });
         }
 
