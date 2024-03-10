@@ -6,7 +6,6 @@ $transition-property: all;
 $transition-duration: 0.3s;
 $transition-timing-function: ease;
 $border-radius: 20px;
-$input-margin: 10px;
 
 
 
@@ -37,6 +36,18 @@ $input-margin: 10px;
 
 @mixin input-rules($input-margin) {
     margin: $input-margin;
+    height: 60px;
+    @include transition($transition-property, $transition-duration, $transition-timing-function);
+    &::placeholder {
+        font-size: 12px;
+        transition: transform 0.2s;
+    }
+    &:focus::placeholder {
+        transform: translateY(-16px);
+    }
+    border: none;
+    text-indent: 10px;
+
 }
 
 body {
@@ -62,17 +73,32 @@ body {
 }
 
 .login-box {
-    @include box(666px, 500px, $background-color, $border-radius);
+    @include box(666px, 550px, $background-color, $border-radius);
     text-align: center;
 
     input{
-        @include input-rules($input-margin);
-        @include text(15px, 400, $text-color);
+        @include input-rules(10px 30px 10px 30px);
+        @include text(16px, 400, $text-color);
+        border-radius: $border-radius;
     }
 
     .login-form {
         display: flex;
         flex-direction: column;
-        
+
+    
+        input[type="submit"] {
+            background-color: #0466d2;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 30px;
+            padding: 10px;
+            border: none;
+            border-radius: $border-radius;
+            &:hover {
+                background-color: #035aa6;
+            }
     }
+}
+
 }
