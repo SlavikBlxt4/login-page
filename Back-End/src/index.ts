@@ -56,7 +56,7 @@ app.delete("/peliculas", (req: Request, res: Response) => {
     // ELIMINAR UNA PELÍCULA (DELETE PELICULA)
 });
 
-app.post('/usuarios/login', async (req, res) => {
+app.post('/usuarios/login', async (req, res) => { //para logear a los usuarios
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -82,6 +82,24 @@ app.post('/usuarios/login', async (req, res) => {
         return res.status(500).json({ mensaje: 'Error al realizar el login', error });
     }
 });
+
+app.post('/usuarios', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+      // Insert the user data into the database
+      const queryString = 'INSERT INTO usuarios ("email", "password") VALUES($1, $2)';
+      const values = [email, password];
+
+      await myPool.query(queryString, values);
+      res.status(200).json({ message: 'User registered successfully' });
+    } catch (error) {
+      console.error('Failed to insert user into database:', error);
+      res.status(500).json({ error: 'Failed to insert user into database' });
+    }
+  });
+
+
 
 app.get("/categoria", async (req: Request, res: Response) => {
     try {

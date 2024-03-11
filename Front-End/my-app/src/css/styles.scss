@@ -76,11 +76,17 @@ body {
     @include box(666px, 550px, $background-color, $border-radius);
     text-align: center;
 
+    &.error {
+        padding-bottom: 40px; // increased padding when there's an error
+      }
+
     input{
         @include input-rules(10px 30px 10px 30px);
         @include text(16px, 400, $text-color);
         border-radius: $border-radius;
     }
+
+
 
     .login-form {
         display: flex;

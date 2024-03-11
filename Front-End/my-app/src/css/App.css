@@ -26,6 +26,9 @@ body {
   border-radius: 20px;
   text-align: center;
 }
+.login-box.error {
+  padding-bottom: 40px;
+}
 .login-box input {
   margin: 10px 30px 10px 30px;
   height: 60px;
