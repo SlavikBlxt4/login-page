@@ -8,6 +8,21 @@ import Main from './pages/Main';
 
 function App() {
   const [page, setPage] = useState('/');
+  const token = localStorage.getItem('token');
+  const currentPath = window.location.pathname;
+
+  if (token && currentPath !== '/login') {
+    // El usuario ha iniciado sesión y no está en la página de inicio de sesión
+    // Permitir acceso a '/'
+  } else if (!token && currentPath !== '/login') {
+    // El usuario no ha iniciado sesión y no está en la página de inicio de sesión
+    // Redirigir a '/login'
+    window.location.href = '/login';
+  } else if (token && currentPath === '/login') {
+    // El usuario ha iniciado sesión y está en la página de inicio de sesión
+    // Redirigir a '/'
+    window.location.href = '/';
+  }
   
   return (
       <Router>
