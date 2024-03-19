@@ -12,17 +12,17 @@ function App() {
   const currentPath = window.location.pathname;
 
   if (token && currentPath !== '/login') {
-    // El usuario ha iniciado sesión y no está en la página de inicio de sesión
-    // Permitir acceso a '/'
-  } else if (!token && currentPath !== '/login') {
-    // El usuario no ha iniciado sesión y no está en la página de inicio de sesión
-    // Redirigir a '/login'
+    // User is logged in and not on the login page
+    // Allow access to any page
+} else if (!token && currentPath !== '/login' && currentPath !== '/register') {
+    // User is not logged in and not on the login or register page
+    // Redirect to '/login'
     window.location.href = '/login';
-  } else if (token && currentPath === '/login') {
-    // El usuario ha iniciado sesión y está en la página de inicio de sesión
-    // Redirigir a '/'
+} else if (token && (currentPath === '/login' || currentPath === '/register')) {
+    // User is logged in and on the login or register page
+    // Redirect to '/'
     window.location.href = '/';
-  }
+}
   
   return (
       <Router>

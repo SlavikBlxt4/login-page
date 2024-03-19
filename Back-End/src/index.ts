@@ -16,9 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 
 const myPool = new Pool({
     user: "postgres",
-    host: "database-1.cpmk4w6w84vv.us-east-1.rds.amazonaws.com",
+    host: "database-1.c1iywqwec4uj.us-east-1.rds.amazonaws.com",
     database: "postgres",
-    password: "12345678",
+    password: "postgres",
     port: 5432,
     ssl: {
         rejectUnauthorized: false,
