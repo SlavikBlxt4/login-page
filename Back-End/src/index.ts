@@ -56,6 +56,10 @@ app.delete("/peliculas", (req: Request, res: Response) => {
     // ELIMINAR UNA PELÍCULA (DELETE PELICULA)
 });
 
+
+
+//post para logear usuarios
+
 app.post('/usuarios/login', async (req, res) => { //para logear a los usuarios
     const { email, password } = req.body;
 
@@ -82,6 +86,8 @@ app.post('/usuarios/login', async (req, res) => { //para logear a los usuarios
         return res.status(500).json({ mensaje: 'Error al realizar el login', error });
     }
 });
+
+//post para registrar usuarios
 
 app.post('/usuarios', async (req, res) => {
     const { email, password } = req.body;
