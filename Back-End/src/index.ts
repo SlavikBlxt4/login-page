@@ -1,8 +1,9 @@
 import express, { Request, Response } from "express";
 import cors from 'cors';
 import { Pool } from "pg";
-const bcrypt = require('bcrypt');
-const bodyParser = require('body-parser');
+import * as bcrypt from 'bcrypt';
+import * as jwt from 'jsonwebtoken';
+import * as crypto from 'crypto';
 
 const app = express();
 app.use(cors());
@@ -11,6 +12,9 @@ const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+
+
 
 
 
@@ -57,6 +61,13 @@ app.delete("/peliculas", (req: Request, res: Response) => {
 });
 
 
+const generateSecretKey = () => {
+    return crypto.randomBytes(32).toString('hex');
+};
+
+const secretKey = generateSecretKey();
+console.log('Generated Secret Key:', secretKey);
+
 
 //post para logear usuarios
 
@@ -75,13 +86,19 @@ app.post('/usuarios/login', async (req, res) => { //para logear a los usuarios
 
         const usuario = result.rows[0];
 
-        // Comparar la contraseña ingresada con la contraseña almacenada en la base de datos
-        
-        if (password !== usuario.password) {
+        const isMatch = await bcrypt.compare(password, usuario.password);
+        if (!isMatch) {
             return res.status(401).json({ mensaje: 'Email o contraseña incorrectos' });
         }
 
-        return res.status(200).json({ mensaje: 'Login exitoso' });
+        // Create a JWT token if the password is correct
+        const token = jwt.sign(
+            { userId: usuario.id, email: usuario.email },
+            secretKey,
+            { expiresIn: '1h' }
+        );
+
+        return res.status(200).json({ mensaje: 'Login exitoso', token });
     } catch (error) {
         return res.status(500).json({ mensaje: 'Error al realizar el login', error });
     }
@@ -93,9 +110,10 @@ app.post('/usuarios', async (req, res) => {
     const { email, password } = req.body;
 
     try {
+        const hashedPassword = await bcrypt.hash(password, 10);
       // Insert the user data into the database
       const queryString = 'INSERT INTO usuarios ("email", "password") VALUES($1, $2)';
-      const values = [email, password];
+      const values = [email, hashedPassword];
 
       await myPool.query(queryString, values);
       res.status(200).json({ message: 'User registered successfully' });
