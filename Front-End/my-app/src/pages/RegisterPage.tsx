@@ -20,6 +20,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       email: formData.get('email'),
       password: formData.get('password'),
     };
+    setRegisterError(false);
   
     try {
       const response = await fetch('http://localhost:3000/usuarios', {
@@ -35,6 +36,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         navigate('/');
       } else {
         console.log('User not registered');
+        setRegisterError(true);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -43,11 +45,13 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 
 
 
+  
 
+  const [registerError, setRegisterError] = useState(false);
 
     return (
       <div>
-        <div className='login-box'>
+        <div className={`login-box ${registerError ? 'error' : ''}`}>
           <div className='login-title'>
             <h1>Create your account!</h1>
             <p>Enter your email and password to begin</p>
@@ -55,6 +59,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
           <form className='login-form' action='/usuarios' method='POST' onSubmit={handleSubmit}>
             <input type="email" name="email" required autoComplete='email' placeholder="Email" />
             <input type="password" name="password" placeholder="Password" />
+            {registerError && <p style={{ color: 'red' }}>This account already exists</p>}
             <input type="submit" placeholder="Login" />
           </form>
           <div className='login-footer'>
