@@ -64,7 +64,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
             <input type="submit" placeholder="Login" />
           </form>
           <div className='login-footer'>
-            <p>Already have an account? <a href="/login" onClick={() => <Navigate to="/login" />}>Log in</a></p>
+            <p>Already have an account? <a href="/login" onClick={(e) => { e.preventDefault(); navigate("/login"); }}>Login</a></p>
           </div>
 
         </div>
