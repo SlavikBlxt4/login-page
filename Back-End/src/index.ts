@@ -73,7 +73,6 @@ if (!secretKey) {
   throw new Error('La variable SECRET_KEY no está definida en el archivo .env');
 }
 
-console.log('Secret Key:', secretKey);
 
 
 //post para logear usuarios
@@ -104,7 +103,6 @@ app.post('/usuarios/login', async (req, res) => { //para logear a los usuarios
             secretKey,
             { expiresIn: '1h' }
         );
-        console.log(token);
         
         
 

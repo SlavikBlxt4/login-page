@@ -9,7 +9,7 @@ import Main from './pages/Main';
 function App() {
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
 
-  
+
 
 
   
@@ -17,7 +17,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={token === null ? <Navigate to="/login" /> : <Main />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage setToken={setToken} />} />
         <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </Router>
