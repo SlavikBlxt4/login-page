@@ -104,6 +104,8 @@ app.post('/usuarios/login', async (req, res) => { //para logear a los usuarios
             secretKey,
             { expiresIn: '1h' }
         );
+        console.log(token);
+        
         
 
         return res.status(200).json({ mensaje: 'Login exitoso', token });

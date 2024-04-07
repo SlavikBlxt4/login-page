@@ -4,14 +4,9 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 
 
-const LoginPage: React.FC<LoginPageProps> = ({ setToken }) => {
+const LoginPage: React.FC<LoginPageProps> = ({  }) => {
   const navigate = useNavigate();
-  //backend request scripts
-
-
-
-
-
+  
 // fetch para el login de usuarios
 const handleLoginSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault(); // Prevents the default form submission behavior
@@ -35,8 +30,9 @@ const handleLoginSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 
     if (response.ok) {
       console.log('User logged in successfully');
+      localStorage.setItem('token', data.token);
+      console.log(data.token);
       
-      navigate('/');
     } else {
       setLoginError(true);
       console.log('Login failed');
@@ -81,7 +77,7 @@ const [loginError, setLoginError] = useState(false);
 
 // LoginPage component type or interface
 type LoginPageProps = {
-  setToken: React.Dispatch<React.SetStateAction<string | null>>;
+  
 }
 
 export default LoginPage;
