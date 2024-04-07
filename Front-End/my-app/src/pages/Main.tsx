@@ -5,7 +5,7 @@ type MainProps = {
   setPage: Dispatch<SetStateAction<string>>;
 };
 
-const Main: React.FC<MainProps> = ({ setPage }) => {
+const Main: React.FC = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [movies, setMovies] = useState<any[]>([]); // Asegúrate de definir correctamente el tipo de los objetos de película
 

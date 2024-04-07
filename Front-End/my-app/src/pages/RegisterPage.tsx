@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import '../css/App.css';
 import { useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 
 
-const RegisterPage: React.FC<RegisterPageProps> = ({ setPage }) => {
+const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
   //backend request scripts
 
@@ -63,7 +64,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
             <input type="submit" placeholder="Login" />
           </form>
           <div className='login-footer'>
-            <p>Already have an account? <a href="/login" onClick={() => setPage('/login')}>Log in</a></p>
+            <p>Already have an account? <a href="/login" onClick={() => <Navigate to="/login" />}>Log in</a></p>
           </div>
 
         </div>
@@ -77,6 +78,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 // RegisterPage component type or interface
 type RegisterPageProps = {
   setPage: (page: string) => void;
+
 }
 
 export default RegisterPage;

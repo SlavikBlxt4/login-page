@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import '../css/App.css';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 
-const LoginPage: React.FC<LoginPageProps> = ({ setPage }) => {
+const LoginPage: React.FC<LoginPageProps> = ({ setToken }) => {
   const navigate = useNavigate();
   //backend request scripts
 
@@ -68,7 +68,7 @@ const [loginError, setLoginError] = useState(false);
             <input type="submit" placeholder="Login" />
           </form>
           <div className='login-footer'>
-            <p>Don't have an account? <a href="/register" onClick={() => setPage('register')}>Register</a></p>
+            <p>Don't have an account? <a href="/register" onClick={() => <Navigate to="/register" />}>Register</a></p>
           </div>
 
         </div>
@@ -81,7 +81,7 @@ const [loginError, setLoginError] = useState(false);
 
 // LoginPage component type or interface
 type LoginPageProps = {
-  setPage: (page: string) => void;
+  setToken: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export default LoginPage;

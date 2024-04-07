@@ -4,6 +4,10 @@ import { Pool } from "pg";
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import * as crypto from 'crypto';
+import dotenv from 'dotenv';
+
+
+
 
 const app = express();
 app.use(cors());
@@ -61,12 +65,15 @@ app.delete("/peliculas", (req: Request, res: Response) => {
 });
 
 
-const generateSecretKey = () => {
-    return crypto.randomBytes(32).toString('hex');
-};
 
-const secretKey = generateSecretKey();
-console.log('Generated Secret Key:', secretKey);
+dotenv.config();
+const secretKey = process.env.SECRET_KEY;
+
+if (!secretKey) {
+  throw new Error('La variable SECRET_KEY no está definida en el archivo .env');
+}
+
+console.log('Secret Key:', secretKey);
 
 
 //post para logear usuarios
@@ -97,6 +104,7 @@ app.post('/usuarios/login', async (req, res) => { //para logear a los usuarios
             secretKey,
             { expiresIn: '1h' }
         );
+        
 
         return res.status(200).json({ mensaje: 'Login exitoso', token });
     } catch (error) {
