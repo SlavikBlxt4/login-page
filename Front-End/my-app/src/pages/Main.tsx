@@ -1,12 +1,9 @@
 import React, { useEffect, useState, Dispatch, SetStateAction } from 'react';
-import '../css/App.css'; // Asegúrate de importar el archivo CSS correspondiente
+import '../css/App.css';
 
 
 
 const Main: React.FC = () => {
-
-
-  
 
   return (
     <div>

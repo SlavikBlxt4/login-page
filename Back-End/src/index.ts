@@ -3,7 +3,6 @@ import cors from 'cors';
 import { Pool } from "pg";
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
-import * as crypto from 'crypto';
 import dotenv from 'dotenv';
 
 
@@ -37,32 +36,6 @@ app.listen(PORT, ()=> {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
 
-app.get("/pelicula", async (req: Request, res: Response) => {
-    try {
-        const { rows } = await myPool.query("SELECT * FROM pelicula;");
-        res.json(rows);
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        res.status(500).send("Internal Server Error");
-    }
-});
-
-
-
-app.post("/peliculas", (req: Request, res: Response) => {
-    res.send('Tu primer POST');
-    // INSERTAR UNA PELÍCULA (INSERT INTO PELICULA ... VALUES ...)
-});
-
-app.put("/peliculas", (req: Request, res: Response) => {
-    res.send('Tu primer PUT');
-    // MODIFICAR UNA PELÍCULA (UPDATE PELICULA SET .... WHERE)
-});
-
-app.delete("/peliculas", (req: Request, res: Response) => {
-    res.send('Tu primer DELETE');
-    // ELIMINAR UNA PELÍCULA (DELETE PELICULA)
-});
 
 
 
@@ -130,25 +103,3 @@ app.post('/usuarios', async (req, res) => {
       res.status(500).json({ error: 'Failed to insert user into database' });
     }
   });
-
-
-
-app.get("/categoria", async (req: Request, res: Response) => {
-    try {
-        const { rows } = await myPool.query("SELECT * FROM categoria;");
-        res.json(rows);
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        res.status(500).send("Internal Server Error");
-    }
-});
-
-app.get("/categoriapelicula", async (req: Request, res: Response) => {
-    try {
-        const { rows } = await myPool.query("SELECT * FROM categoriapelicula;");
-        res.json(rows);
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        res.status(500).send("Internal Server Error");
-    }
-});
