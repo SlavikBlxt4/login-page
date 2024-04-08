@@ -21,12 +21,12 @@ This repository contains a project for a user login and registration page, which
 
 1. **Clone the Repository**: `git clone https://github.com/SlavikBlxt4/login-page.git`
 2. **Install Dependencies**:
-   - **Frontend**: `cd Front-End/my-app && npm install`
+   - **Frontend**: `cd Front-End && npm install`
    - **Backend**: `cd Back-End && npm install`
 3. **Set Environment Variables**:
    - Create a `.env` file in the `backend` folder and provide necessary variables such as database connection and JWT configuration.
 4. **Start the Application**:
-   - **Frontend**: `cd Front-End && npm start`
+   - **Frontend**: `cd Front-End/my-app && npm start`
    - **Backend**: `cd Back-End && npm run dev`
 
 ## Process
